@@ -1,3 +1,7 @@
+//console.log(document.all)
+// document.title('hello');
+// console.log(document.all)
+// console.log(document.images);
 my_form = document.querySelector('.input-form')
 item_input = document.querySelector('#item_input')
 item_output = document.querySelector('.add_item')
