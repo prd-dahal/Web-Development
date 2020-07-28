@@ -34,6 +34,8 @@ function compare_moves(users_move,computers_move){
 $(document).keypress(function (){
   computer_move = []
   users_move = []
+
+
   $('#level-title').text(`Level ${level}`);
 
   m = Math.floor(Math.random()*4)
@@ -52,9 +54,8 @@ $(document).keypress(function (){
     users_move.push(users_choice);
     $(`#${users_choice}`).fadeOut(100).fadeIn(100);
 
-
     compared_flag = (compare_moves(users_move,computer_move));
-    console.log(compared_flag)
+    // console.log(compared_flag)
     if(compared_flag==false){
       $('h1').text("Game Over, Press Any Key to Restart")
       sound = new Audio('sounds/wrong.mp3')
@@ -64,11 +65,13 @@ $(document).keypress(function (){
           $('body').css('background-color','#011F3F')
       },100)
 
+
     }
     else{
       sound = new Audio  ('sounds/'+users_choice+'.mp3');
       sound.play();
     }
+    e.stopImmediatePropagation();
   });
 
 
