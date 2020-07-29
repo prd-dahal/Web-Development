@@ -21,9 +21,11 @@ app.get('/bmi',function(req,res){
 app.post('/bmi', function(req, res){
   weight = Number(req.body.weight);
   height = Number(req.body.height);
-  bmi = weight/height;
+  bmi = weight/(height*height);
   res.send('Your BMI is '+ bmi)
 })
+
+
 app.listen(3000, function(){
   console.log('Server started at 3000')
 });
