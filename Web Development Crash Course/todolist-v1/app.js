@@ -5,36 +5,25 @@ app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 
+let items = ["Buy Food","Cook Food","Eat Food"]
+
 app.get('/', function(req, res){
   var today = new Date()
   currentDay = today.getDay()
-  day = ""
-  switch(currentDay){
-    case 0:
-      day = 'Sunday';
-      break
-   case 1:
-    day = 'Monday'
-    break
-  case 2:
-    day = 'Tuesday'
-    break
-  case 3:
-    day = 'Wednesday'
-    break
-  case 4:
-    day = 'Thursday'
-    break
-  case 5:
-    day = 'Friday'
-    break
-  case 6:
-    day ='Saturday'
-    break
-  default:
-    console.log("Invalid value")
+  options ={
+    weekday:"long",
+    day:'numeric',
+    month:'long'
   }
-  res.render('list',{day:day})
+  var day = today.toLocaleDateString('en-US',options)
+
+  res.render('list',{day:day, items:items})
+})
+
+app.post('/',(req,res) => {
+  items.push(req.body.newItem)
+
+  res.redirect('/')
 })
 
 app.listen(3000,function(){
