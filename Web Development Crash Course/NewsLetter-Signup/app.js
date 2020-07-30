@@ -41,7 +41,7 @@ app.post("/", function(req, res){
       res.sendFile(__dirname+"/templates/failure.html")
     }
     response.on("data", function(data){
-      console.log(JSON.parse(data))
+      // console.log(JSON.parse(data))
     })
   })
 request.write(jsonData);
@@ -56,7 +56,7 @@ app.listen(3000, function(){
 
 
 //API key
-//2bab7e72458482bdc8d47798dcf385e9-us17
+// 2bab7e72458482bdc8d47798dcf385e9-us17
 
 //audience
 //
