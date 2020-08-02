@@ -30,7 +30,9 @@ app.get('/work', function(req,res){
   res.render('list',{listTitle:"Work", items:work_list})
 })
 
-
+app.get('/about',function(req, res){
+  res.render('about');
+})
 
 
 
