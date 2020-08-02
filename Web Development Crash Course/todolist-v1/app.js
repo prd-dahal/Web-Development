@@ -18,7 +18,7 @@ app.post('/',(req,res) => {
   console.log(req.body)
   if(req.body.button ==='Work'){
     work_list.push(req.body.newItem)
-    res.redirect('/home')
+    res.redirect('/work')
   }else{
   items.push(req.body.newItem)
 
