@@ -7,12 +7,35 @@ const peopleSchema = new mongoose.Schema({
 });
 
 const People = mongoose.model('people',peopleSchema)
-const people = new People({
-  name:"Pradeep",
-  age:22,
+// const people = new People({
+//   name:"Pradeep",
+//   age:22,
+// })
+// const people2 = new People({
+//     name:"Ranjana",
+//     age:25
+// })
+// const people3 = new People({
+//   name:"Ajay",
+//   age:28
+// })
+// People.insertMany([people2,people3], function(err){
+//   if(err){
+//     console.log(err)
+//   }else{
+//     console.log('Successfully inserted the peoples')
+//   }
+// })
+// people.save()
+People.find(function(err, peoples){
+  if(err){
+    console.log(err)
+  }else{
+    peoples.forEach(function(items, index){
+      console.log(items.name)
+    })
+  }
 })
-people.save()
-
 
 
 // const fruitSchema = new mongoose.Schema({
