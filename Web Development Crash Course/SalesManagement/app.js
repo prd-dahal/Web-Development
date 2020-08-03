@@ -1,6 +1,7 @@
 express = require('express')
 bodyParser = require('body-parser')
 ejs = require('ejs')
+dbs = require(__dirname+'/database.js')
 
 app = express()
 app.set('view engine', 'ejs')
@@ -12,9 +13,14 @@ app.get('/',function(req, res){
 })
 
 app.get('/about',function(req,res){
+  // dbs.insertNewProduct(1,"Bucket",120,5)
   res.render('about')
+
 })
 app.get('/contact',function(req,res){
+  dbs.readAllProducts(function(response){
+    console.log(response)
+  })
   res.render('contact')
 })
 
