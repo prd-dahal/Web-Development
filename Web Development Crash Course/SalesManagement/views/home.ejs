@@ -1,3 +1,44 @@
 <%-include('partials/header')-%>
-<h2>Home</h2>
+
+<h2 class='container'>Product Details</h2>
+<table class='table'>
+  <thead class='thead-dark'>
+    <tr>
+      <th scope='col'>Code Number</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Sales</th>
+      <th>Purchase</th>
+      <th>Remaining</th>
+    </tr>
+    </thead>
+    <tbody>
+      <%allProducts.forEach(function(product){%>
+        <tr>
+          <th><%=product.codeNo%></th>
+          <th><%=product.name%></th>
+          <th><%=product.price%></th>
+          <th><%=product.sales.quantity%></th>
+          <th><%=product.purchase.quantity%></th>
+          <th></th>
+        </tr>
+      <%})%>
+    </tbody>
+
+
+</table>
+<h4 class='container'>Add Product Form</h4>
+<form class="container" style="" action="index.html" method="post">
+  <div class="row">
+    <div class="col">
+      <label for="codeNumber">Code Number</label>
+      <input type="Number" name="codeNumber" class='form-control' placeholder='Code Number'>
+    </div>
+    <div class="col">
+      <label for="name">Name</label>
+      <input type="text" name="name" value="" class='form-control' placeholder='Name'>
+    </div>
+  </div>
+
+</form>
 <%-include('partials/footer')-%>

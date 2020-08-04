@@ -9,7 +9,10 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 
 app.get('/',function(req, res){
-  res.render('home')
+  
+  dbs.readAllProducts(function(response){
+    res.render('home', {allProducts:response})
+  })
 })
 
 app.get('/about',function(req,res){
