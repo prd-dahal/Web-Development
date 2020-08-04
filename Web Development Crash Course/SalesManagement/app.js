@@ -57,6 +57,24 @@ app.get('/delete/:_id',function(req, res){
 
   })
 })
+app.get('/:_id/edit', function(req,res){
+  _idProduct = req.params._id
+  dbs.readAllProducts(function(allProduct){
+    let product
+
+    for (let i=0;i<allProduct.length;i++){
+      if(allProduct[i]._id == _idProduct){
+        console.log("Here")
+        product = allProduct[i]
+      }
+    }
+    console.log(product)
+    _idPurchase= product.purchase._id
+    _idSales = product.sales._id
+    res.render('edit',{product:product})
+
+  })
+})
 
 
 app.listen(3000,function(){

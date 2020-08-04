@@ -24,7 +24,9 @@
             <th><%=product.sales.quantity%></th>
             <th><%=product.purchase.quantity%></th>
             <th><%=product.purchase.quantity - product.sales.quantity%></th>
-            <th><a href="/delete/<%=product._id%>"><i class="fa fa-trash"></a></th>
+            <th>
+              <a href="/delete/<%=product._id%>"><i class="fa fa-trash"></a><a href="/<%=product._id%>/edit"><i class="fa fa-pencil"></a>
+            </th>
           </tr>
         <%})%>
       </tbody>
