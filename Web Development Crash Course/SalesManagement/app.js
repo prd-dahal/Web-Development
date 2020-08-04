@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 
 app.get('/',function(req, res){
-  
+
   dbs.readAllProducts(function(response){
     res.render('home', {allProducts:response})
   })
@@ -28,8 +28,35 @@ app.get('/contact',function(req,res){
 })
 
 
+app.post('/',function(req,res){
+  // console.log(req.body)
+  codeNumber = Number(req.body.codeNumber)
+  name = req.body.name
+  price = Number(req.body.price)
+  purchase = Number(req.body.purchase)
+  dbs.insertNewProduct(codeNumber,name,price,purchase)
+  res.redirect('/')
+})
+app.get('/delete/:_id',function(req, res){
+  _idProduct = (req.params._id)
 
+  dbs.readAllProducts(function(allProduct){
+    let product
 
+    for (let i=0;i<allProduct.length;i++){
+      if(allProduct[i]._id == _idProduct){
+        console.log("Here")
+        product = allProduct[i]
+      }
+    }
+    console.log(product)
+    _idPurchase= product.purchase._id
+    _idSales = product.sales._id
+    dbs.deleteProduct(_idProduct,_idPurchase,_idSales)
+    res.redirect('/')
+
+  })
+})
 
 
 app.listen(3000,function(){

@@ -36,7 +36,7 @@ const Sales = mongoose.model('Sale',salesSchema)
 const Purchase = mongoose.model('Purchase', purchaseSchema)
 
 exports.insertNewProduct = function(codeNo, name, price, purchaseQuantity){
-  console.log("I am here")
+
   const purchase = new Purchase({
     quantity: purchaseQuantity
   })
@@ -65,8 +65,35 @@ exports.readAllProducts = function(callback){
       console.log(err)
     }else{
        product = products
-       
+
        return callback(product)
+    }
+  })
+
+}
+exports.deleteProduct = function(_idProduct,_idPurchase,_idSales){
+  Product.deleteOne({_id:_idProduct},function(err){
+    if(err){
+      console.log(err)
+    }
+    else{
+      console.log("Product Deleted Successfully")
+    }
+  })
+  Purchase.deleteOne({_id:_idPurchase},function(err){
+    if(err){
+      console.log(err)
+    }
+    else{
+      console.log("Purchase Deleted Successfully")
+    }
+  })
+  Sales.deleteOne({_id:_idSales},function(err){
+    if(err){
+      console.log(err)
+    }
+    else{
+      console.log("Saless Deleted Successfully")
     }
   })
 

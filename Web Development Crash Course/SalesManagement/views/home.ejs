@@ -1,44 +1,88 @@
 <%-include('partials/header')-%>
 
 <h2 class='container'>Product Details</h2>
-<table class='table'>
-  <thead class='thead-dark'>
-    <tr>
-      <th scope='col'>Code Number</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Sales</th>
-      <th>Purchase</th>
-      <th>Remaining</th>
-    </tr>
-    </thead>
-    <tbody>
-      <%allProducts.forEach(function(product){%>
-        <tr>
-          <th><%=product.codeNo%></th>
-          <th><%=product.name%></th>
-          <th><%=product.price%></th>
-          <th><%=product.sales.quantity%></th>
-          <th><%=product.purchase.quantity%></th>
-          <th></th>
-        </tr>
-      <%})%>
-    </tbody>
 
+<div class="container">
+  <table class="table table-striped table-bordered" style="width:100%" id="productTable">
+    <thead class='thead-dark'>
+      <tr>
+        <th scope='col'>Code Number</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Sales</th>
+        <th>Purchase</th>
+        <th>Remaining</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        <%allProducts.forEach(function(product){%>
+          <tr>
+            <th><%=product.codeNo%></th>
+            <th><%=product.name%></th>
+            <th><%=product.price%></th>
+            <th><%=product.sales.quantity%></th>
+            <th><%=product.purchase.quantity%></th>
+            <th><%=product.purchase.quantity - product.sales.quantity%></th>
+            <th><a href="/delete/<%=product._id%>"><i class="fa fa-trash"></a></th>
+          </tr>
+        <%})%>
+      </tbody>
+  </table>
+</div>
 
-</table>
-<h4 class='container'>Add Product Form</h4>
-<form class="container" style="" action="index.html" method="post">
-  <div class="row">
-    <div class="col">
-      <label for="codeNumber">Code Number</label>
-      <input type="Number" name="codeNumber" class='form-control' placeholder='Code Number'>
+<div class="container">
+  <form class="well form-horizontal" action="/" method="post">
+    <fieldset>
+    <legend><center><h2><b>Add Product Form</b></h2></center></legend><br>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Code Number</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+          <input  name="codeNumber" placeholder="Code Number" class="form-control"  type="number">
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <label for="name">Name</label>
-      <input type="text" name="name" value="" class='form-control' placeholder='Name'>
+    <div class="form-group">
+      <label class="col-md-4 control-label" >Name of Product</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="name" placeholder="Name of Product" class="form-control"  type="text">
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Price</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+          <input  name="price" placeholder="Price" class="form-control"  type="Number">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Purchase</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ruble"></i></span>
+          <input  name="purchase" placeholder="No of Purchase" class="form-control"  type="Number">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label"></label>
+      <div class="col-md-4"><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+      </div>
+    </div>
+    </fieldset>
+  </form>
+</div>
 
-</form>
+
 <%-include('partials/footer')-%>
+<script>
+  $('#productTable').DataTable();
+</script>

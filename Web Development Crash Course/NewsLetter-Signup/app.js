@@ -51,12 +51,3 @@ request.end();
 app.listen(3000, function(){
   console.log("The server started at the port 3000")
 })
-
-
-
-
-//API key
-// 2bab7e72458482bdc8d47798dcf385e9-us17
-
-//audience
-//
