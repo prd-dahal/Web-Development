@@ -32,9 +32,26 @@ app.post('/articles',function(req,res){
   console.log(req.body.content)
   const newArticle = new Article({
     title:req.body.title,
-    content:req.body.title
+    content:req.body.content
   })
-  newArticle.save()
+  newArticle.save(function(err){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send("success")
+    }
+  })
+})
+app.delete('/articles',function(req,res){
+  Article.deleteMany(, function(err){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send("Deleted All Data")
+    }
+  })
 })
 
 app.listen(3000,function(){
